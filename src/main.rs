@@ -1,5 +1,4 @@
-mod vector;
-use vector::Vector;
+use gmath_rs::vector::Vector;
 
 #[allow(non_snake_case)]
 fn aV(a: f64, v: Vector<f64>) -> Vector<f64> {
@@ -7,11 +6,11 @@ fn aV(a: f64, v: Vector<f64>) -> Vector<f64> {
 }
 
 fn main() {
-    let p1 = Vector::new(vec![1.0, 0.5]);
-    let p2 = Vector::new2(2.4, 3.9);
-    let p3 = Vector::new(vec![1.0, 0.5 - 1.0E-16]);
+    let p1 = Vector::new2((1.0, 0.5));
+    let p2 = Vector::new2((2.4, 3.9));
+    let p3 = Vector::new2((1.0, 0.5 - 1.0E-16));
     // ここで桁落ち誤差に入る模様
-    let p4 = Vector::new(vec![1.0, 0.5 - 1.0E-17]);
+    let p4 = Vector::new2((1.0, 0.5 - 1.0E-17));
 
     println!("加算:{} + {} -> {}", p1, p2, p1 + p2);
     println!("減算:{} - {} -> {}", p1, p2, p1 - p2);
@@ -32,7 +31,7 @@ fn main() {
     );
 
     println!("関数:{} * {} + {} -> {}", 1.5, p1, p2, aV(1.5, p1) + p2);
-    println!("メソッド:{} * {} + {} -> {}", 1.5, p1, p2, p1.aV(1.5) + p2);
+    println!("メソッド:{} * {} + {} -> {}", 1.5, p1, p2, 1.5 * p1 + p2);
 
     println!("比較:{} == {} -> {}", p1, p2, p1 == p2);
     println!("比較:{} != {} -> {}", p1, p2, p1 != p2);
